@@ -18,8 +18,8 @@ app.get('/blog/:title?', (req, res) => {
 		res.status(503);
 		res.send("This page is under construction");
 	} else {
-		let post = posts[title];
-		res.send(post);		
+		let post = posts[title] || {};
+		res.render('post', {post: post});		
 	}
 });
 
