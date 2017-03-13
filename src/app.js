@@ -1,7 +1,9 @@
 'use strict';
 
 const express = require('express'),
-	posts = require('./mock/posts.json')
+	posts = require('./mock/posts.json');
+
+const postList = Object.keys(posts).map( value => posts[value] );
 
 const app = express();
 
@@ -18,7 +20,7 @@ app.get('/blog/:title?', (req, res) => {
 	let title = req.params.title;
 	if (title == undefined) {
 		res.status(503);
-		res.send("This page is under construction");
+		res.render('blog', {posts: postList});
 	} else {
 		let post = posts[title] || {};
 		res.render('post', {post: post});		
