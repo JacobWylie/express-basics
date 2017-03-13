@@ -13,6 +13,8 @@ app.set('view engine', 'pug');
 app.set('views', __dirname + '/views')
 
 app.get('/', (req, res) => {
+	let path = req.path;
+	res.locals.path = path;
 	res.render('index');
 });
 
